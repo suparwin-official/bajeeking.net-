@@ -1,20 +1,15 @@
-<!DOCTYPE html>
-<html>
-<head>
-  <title>Dashboard</title>
-  <link rel="stylesheet" href="style.css">
-</head>
-<body>
+<h2>Welcome <span id="username"></span></h2>
+<p>Email: <span id="email"></span></p>
 
-<h1>📊 Dashboard</h1>
+<button onclick="logout()">Logout</button>
 
-<p>Welcome, <span id="user"></span></p>
+<script type="module">
+  import { getUser, logout } from "./auth.js";
+  window.logout = logout;
 
-<a href="wallet.html" class="btn">Go Wallet</a>
-
-<script>
-  document.getElementById("user").innerText = localStorage.getItem("user");
+  let user = getUser();
+  if(user){
+    document.getElementById("username").innerText = user.name;
+    document.getElementById("email").innerText = user.email;
+  }
 </script>
-
-</body>
-</html>
