@@ -1,10 +1,10 @@
-// USERS DATABASE (browser storage)
+// USERS DATABASE
 let users = JSON.parse(localStorage.getItem("users")) || [];
 
 /* =======================
-   REGISTER FUNCTION
+   SIGNUP
 ======================= */
-function register(){
+function signup(){
   let name = document.getElementById("name").value;
   let email = document.getElementById("email").value;
   let phone = document.getElementById("phone").value;
@@ -12,11 +12,10 @@ function register(){
   let password = document.getElementById("password").value;
 
   if(!username || !password){
-    alert("Fill required fields");
+    alert("Username & Password required");
     return;
   }
 
-  // check user exists
   let exist = users.find(u => u.username === username);
 
   if(exist){
@@ -37,16 +36,19 @@ function register(){
   localStorage.setItem("users", JSON.stringify(users));
 
   alert("Registration successful!");
+  window.location.href = "login.html";
 }
 
 /* =======================
-   LOGIN FUNCTION
+   LOGIN
 ======================= */
 function login(){
   let username = document.getElementById("login_user").value;
   let password = document.getElementById("login_pass").value;
 
-  let user = users.find(u => u.username === username && u.password === password);
+  let user = users.find(
+    u => u.username === username && u.password === password
+  );
 
   if(user){
     localStorage.setItem("currentUser", JSON.stringify(user));
@@ -58,7 +60,29 @@ function login(){
 }
 
 /* =======================
-   GET CURRENT USER
+   FORGOT PASSWORD
+======================= */
+function forgotPassword(){
+  let username = document.getElementById("fp_user").value;
+  let newPassword = document.getElementById("fp_pass").value;
+
+  let user = users.find(u => u.username === username);
+
+  if(!user){
+    alert("User not found");
+    return;
+  }
+
+  user.password = newPassword;
+
+  localStorage.setItem("users", JSON.stringify(users));
+
+  alert("Password updated!");
+  window.location.href = "login.html";
+}
+
+/* =======================
+   GET USER
 ======================= */
 function getUser(){
   return JSON.parse(localStorage.getItem("currentUser"));
