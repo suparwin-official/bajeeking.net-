@@ -1,5 +1,4 @@
-let loseSound = new Audio("assets/audio/lose.mp3");
+let win = new Audio("assets/win.wav");
+let lose = new Audio("assets/lose.wav");
 
-function playLose() {
-  loseSound.play();
-}
+lose.play(); // হারলে
