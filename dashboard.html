@@ -1,1 +1,20 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Dashboard</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
 
+<h1>📊 Dashboard</h1>
+
+<p>Welcome, <span id="user"></span></p>
+
+<a href="wallet.html" class="btn">Go Wallet</a>
+
+<script>
+  document.getElementById("user").innerText = localStorage.getItem("user");
+</script>
+
+</body>
+</html>
