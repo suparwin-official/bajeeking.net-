@@ -1,1 +1,5 @@
+let winSound = new Audio("assets/audio/win.mp3");
 
+function playWin() {
+  winSound.play();
+}
