@@ -1,32 +1,131 @@
-<!DOCTYPE html>
-<html lang="en">
+<!DOCTYPE html><html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>My Website</title>
-  <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Bajeeking Wallet</title>
+  <style>
+    body{
+      margin:0;
+      font-family:Arial;
+      background:#0b0b0b;
+      color:#fff;
+    }header{
+  text-align:center;
+  padding:20px;
+  background:#111;
+  color:gold;
+  font-size:22px;
+  font-weight:bold;
+}
+
+.container{
+  padding:20px;
+  max-width:500px;
+  margin:auto;
+}
+
+.balance-card{
+  background:#1a1a1a;
+  padding:20px;
+  border-radius:12px;
+  text-align:center;
+  margin-bottom:20px;
+}
+
+.balance{
+  font-size:28px;
+  color:lime;
+  margin-top:10px;
+}
+
+.box{
+  background:#151515;
+  padding:15px;
+  border-radius:12px;
+  margin-bottom:15px;
+}
+
+input{
+  width:100%;
+  padding:10px;
+  margin-top:10px;
+  border:none;
+  border-radius:8px;
+  outline:none;
+}
+
+button{
+  width:100%;
+  padding:10px;
+  margin-top:10px;
+  border:none;
+  border-radius:8px;
+  background:gold;
+  font-weight:bold;
+  cursor:pointer;
+}
+
+button:hover{
+  background:#ffcc00;
+}
+
+.history{
+  margin-top:20px;
+  background:#111;
+  padding:10px;
+  border-radius:10px;
+  font-size:14px;
+  max-height:150px;
+  overflow:auto;
+}
+
+  </style>
 </head>
-<body>
+<body><header>
+  🎰 BAJEEKING WALLET
+</header><div class="container">  <div class="balance-card">
+    <div>Total Balance</div>
+    <div class="balance" id="balance">$0</div>
+  </div>  <!-- Deposit -->  <div class="box">
+    <h3>Deposit</h3>
+    <input type="number" id="depositAmount" placeholder="Enter deposit amount" />
+    <button onclick="deposit()">Deposit</button>
+  </div>  <!-- Withdraw -->  <div class="box">
+    <h3>Withdraw</h3>
+    <input type="number" id="withdrawAmount" placeholder="Enter withdraw amount" />
+    <button onclick="withdraw()">Withdraw</button>
+  </div>  <!-- History -->  <div class="history" id="history">
+    <b>Transaction History:</b><br/>
+  </div></div><script>
+  let balance = 0;
+  let history = document.getElementById("history");
 
-  <header>
-    <h1>Welcome to My Website</h1>
-    <nav>
-      <a href="#">Home</a>
-      <a href="#">Services</a>
-      <a href="#">Contact</a>
-    </nav>
-  </header>
+  function updateUI(){
+    document.getElementById("balance").innerText = "$" + balance;
+  }
 
-  <section class="hero">
-    <h2>Build Your Dream Website</h2>
-    <p>Fast, Modern and Responsive Design</p>
-    <button onclick="showMessage()">Click Me</button>
-  </section>
+  function log(text){
+    history.innerHTML += text + "<br/>";
+  }
 
-  <footer>
-    <p>© 2026 My Website</p>
-  </footer>
+  function deposit(){
+    let amt = Number(document.getElementById("depositAmount").value);
+    if(amt > 0){
+      balance += amt;
+      updateUI();
+      log("+ Deposited: $" + amt);
+    }
+  }
 
-  <script src="script.js"></script>
-</body>
+  function withdraw(){
+    let amt = Number(document.getElementById("withdrawAmount").value);
+    if(amt > 0 && amt <= balance){
+      balance -= amt;
+      updateUI();
+      log("- Withdrawn: $" + amt);
+    } else {
+      log("❌ Insufficient balance");
+    }
+  }
+</script></body>
 </html>
