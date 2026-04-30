@@ -1,15 +1,17 @@
-<h2>Welcome <span id="username"></span></h2>
-<p>Email: <span id="email"></span></p>
+<h2>Dashboard</h2>
+
+<h3 id="welcome"></h3>
 
 <button onclick="logout()">Logout</button>
 
-<script type="module">
-  import { getUser, logout } from "./auth.js";
-  window.logout = logout;
+<script>
+  let user = JSON.parse(localStorage.getItem("currentUser"));
 
-  let user = getUser();
-  if(user){
-    document.getElementById("username").innerText = user.name;
-    document.getElementById("email").innerText = user.email;
+  if(!user){
+    window.location.href = "login.html";
+  } else {
+    document.getElementById("welcome").innerText = "Welcome " + user.name;
   }
 </script>
+
+<script src="script.js"></script>
