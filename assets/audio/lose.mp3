@@ -1,1 +1,5 @@
+let loseSound = new Audio("assets/audio/lose.mp3");
 
+function playLose() {
+  loseSound.play();
+}
